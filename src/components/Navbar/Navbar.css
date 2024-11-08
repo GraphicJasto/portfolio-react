@@ -1,0 +1,229 @@
+
+.nav { /*The entire column section*/
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 24px 0px 12px 0px;
+  
+    width: 88px;
+    min-width: 88px;
+    
+    z-index: 3;
+    user-select: none;
+  }
+
+
+.nav ul { /* Container List of navigable items*/
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    transition: 0.4s cubic-bezier(.2,.5,.2,.7);
+    
+}
+
+.nav ul .navItem { /* <li> Individual item container */
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    gap: 3px;
+
+    width: 100%;
+    height: 80px;
+    cursor: pointer;
+
+
+}
+
+.nav ul .navItem.isActive { /*item is selected / Active*/
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 80px;
+    cursor: pointer;
+}
+
+
+
+
+.nav ul .navItem span { /*navItem icon default*/
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    width: 32px;
+    height: 32px;
+    border-radius: 100px;
+    font-variation-settings:
+        'FILL'0,
+        'wght'550,
+        'GRAD'0,
+        'opsz'24;
+
+    color: var(--md-sys-color-on-surface-variant);
+    transition: 0.4s cubic-bezier(0.05, 0.7, 0.1, 1.0);
+
+    pointer-events: none;
+}
+
+.nav li.isActive span { /*navItem icon Active*/
+
+    font-variation-settings:
+        'FILL'1,
+        'wght'600,
+        'GRAD'0,
+        'opsz'24;
+
+    width: 56px;
+    height: 32px;
+    background-color:  var(--md-sys-color-secondary-container);
+    color: rgba(0, 0, 0, .7);
+
+}
+
+
+.nav ul li.navItem.isHovered:not(.isActive) span { /*Hovered navItem icon ,not isActive*/
+    width: 56px;
+
+    font-variation-settings:
+        'FILL'0,
+        'wght'700,
+        'GRAD'0,
+        'opsz'24;
+
+    background-color: var(--md-sys-color-secondary-container-hover);
+    border-radius: 100px;
+}
+
+
+.nav ul li.isHovered:not(.isActive):active span { /*navItem icon while pressing while hovering, not isActive*/
+
+    font-variation-settings:
+        'FILL'0,
+        'wght'450,
+        'GRAD'0,
+        'opsz'8;
+
+    width: 56px;
+    height: 32px;
+    background-color:  rgba(0,0,0,.15);
+    color: rgba(0, 0, 0, 0.7);
+}
+
+
+
+.nav p { /*navItem Title*/
+
+    font-size: 14px;
+    font-family: Inter Tight, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 550;
+    color: rgba(0, 0, 0, 0.5);
+
+    pointer-events: none;
+
+}
+
+.nav li.isActive p { /*navItem Title Selected / Active*/
+
+    color: rgba(0, 0, 0, .7);
+    font-weight: 650;
+}
+
+
+
+
+
+@media (max-aspect-ratio: 4/5) {  /*Small Format Navbar Styling*/
+
+    .nav {
+        width: 100%;
+        height: auto;
+        padding: 0;
+        background-color: rgb(246, 246, 246);
+        box-shadow:  -1 -100 1 black;
+       
+    }
+
+    .nav ul {
+        flex-flow: row nowrap;
+        padding: 0px 12% 0px 12%;
+        gap: 8px;
+
+    }
+
+    .nav ul .navItem {
+
+
+    }
+
+    .nav ul .navItem.isActive { /*item is selected / Active*/
+
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+    }
+
+    .nav p { /*navItem Title*/
+
+        font-size: 14px;
+        font-family: Inter Tight, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-weight: 450;
+        color: rgba(0, 0, 0, 0.5);
+    
+        pointer-events: none;
+    
+    }
+    
+    .nav li.isActive p { /*navItem Title Selected / Active*/
+    
+        color: rgba(0, 0, 0, .7);
+        font-weight: 500;
+    }
+
+}
+
+
+li:has(.customIcon) { /*Custom NavItem*/
+     height: 64px !important;
+   
+}
+
+li.isActive .customIcon { /*Custom NavItem*/
+    height: 40px !important;
+    width: 40px !important;
+}
+
+li.isHovered .customIcon { /*Custom NavItem*/
+    width: 32px !important;
+    
+}
+
+li.isHovered.isActive .customIcon { /*Custom NavItem*/
+    width: 40px !important;
+}
+
+
+li.isActive .customTxt {
+    display: none;
+    transition: 0.2s cubic-bezier(0.05, 0.7, 0.1, 1.0);
+}
+
+li.isActive .customTxt {
+    display: none;
+    transition: 0.2s cubic-bezier(0.05, 0.7, 0.1, 1.0);
+}
