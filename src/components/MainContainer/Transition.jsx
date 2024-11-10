@@ -25,7 +25,7 @@ function Transition({ children, keyProp }) {
           height: '1%',
           width: '80%',
         }}
-        transition={{ duration: 1.2, ease: [0.05, 0.7, 0.1, 1.0] }} // Duración de la animación
+        transition={{ duration: .8, ease: [0.05, 0.7, 0.1, 1.0] }} // Duración de la animación
       >
         {children}
       </motion.div>
@@ -49,7 +49,7 @@ function Transition({ children, keyProp }) {
           height: '1%',
           width: '80%',
         }}
-        transition={{ duration: 1.2, ease: [0.05, 0.7, 0.1, 1.0] }} // Duración de la animación
+        transition={{ duration: .8, ease: [0.05, 0.7, 0.1, 1.0] }} // Duración de la animación
       >
        
       </motion.div>

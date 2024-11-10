@@ -1,0 +1,10 @@
+/* Overlay para bloquear interacciones durante la transición */
+.overlay {
+  position: fixed; /* Fijo respecto a la ventana del navegador */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  pointer-events: all; /* Bloquea todas las interacciones bajo el overlay */
+}
