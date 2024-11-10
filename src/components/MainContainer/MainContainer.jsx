@@ -7,7 +7,7 @@ import Pane from './Pane';
 import Transition from './Transition';
 import './MainContainer.css';
 
-function MainContainer({ activeTab }) {
+function MainContainer({ activeTab, setIsTransitioning }) {
   const location = useLocation();
   const previousPath = useRef(location.pathname); // Guarda el path anterior
   const [currentPane, setCurrentPane] = useState(routes[0].element); // Panel inicial
@@ -20,35 +20,37 @@ function MainContainer({ activeTab }) {
     // Busca la ruta actual en el arreglo de rutas y actualiza el siguiente panel
     const nextRoute = routes.find(route => route.path === location.pathname);
     if (nextRoute) {
-        if (nextRoute.transitionNav) { // Verifica la propiedad transitionNav
-            setNextPane(nextRoute.element);
+      if (nextRoute.transitionNav) { // Verifica la propiedad transitionNav
+        setNextPane(nextRoute.element);
+        setIsTransitioning(true); // Inicia la transición
 
-            // Después de la animación, actualiza el panel actual y limpia el panel siguiente
-            const timer = setTimeout(() => {
-                setCurrentPane(nextRoute.element);
-                setNextPane(null);
-                previousPath.current = location.pathname; // Actualiza el path anterior
-            }, 1200); // Duración de la animación en milisegundos
+        // Después de la animación, actualiza el panel actual y limpia el panel siguiente
+        const timer = setTimeout(() => {
+          setCurrentPane(nextRoute.element);
+          setNextPane(null);
+          previousPath.current = location.pathname; // Actualiza el path anterior
+          setIsTransitioning(false); // Finaliza la transición
+        }, 1200); // Duración de la animación en milisegundos
 
-            return () => clearTimeout(timer);
-        } else {
-            // Si no hay animación, actualiza directamente el panel actual
-            setCurrentPane(nextRoute.element);
-            previousPath.current = location.pathname; // Actualiza el path anterior
-        }
+        return () => clearTimeout(timer);
+      } else {
+        // Si no hay animación, actualiza directamente el panel actual
+        setCurrentPane(nextRoute.element);
+        previousPath.current = location.pathname; // Actualiza el path anterior
+      }
     }
-  }, [location]);
+  }, [location, setIsTransitioning]);
 
   return (
     <main className="MainContainer">
       <section className="Main">
         {/* Renderiza el panel actual con el siguiente */}
-        <Transition keyProp="current" type="slide-out">
+        <Transition keyProp="current">
           <Pane activeTab={activeTab}>{currentPane}</Pane>
         </Transition>
         
         {nextPane && (
-          <Transition keyProp="next" type="slide-in">
+          <Transition keyProp="next">
             <Pane activeTab={activeTab}>{nextPane}</Pane>
           </Transition>
         )}
